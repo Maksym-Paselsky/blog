@@ -14,6 +14,6 @@ export class Post {
   @Field((type) => String)
   content: string;
   @Column({ nullable: true })
-  @Field((type) => Int, { nullable: true })
+  @Field((type) => Int, { nullable: true, defaultValue: 0 })
   likes: number;
 }

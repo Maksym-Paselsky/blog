@@ -12,3 +12,19 @@ type Post {
 type Query {
   posts: [Post!]!
 }
+
+type Mutation {
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(id: Float!, updatePostInput: UpdatePostInput!): Post!
+  deletePost(id: Int!): Post!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
+}
+
+input UpdatePostInput {
+  title: String!
+  content: String
+}
