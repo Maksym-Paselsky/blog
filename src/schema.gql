@@ -3,30 +3,12 @@
 # ------------------------------------------------------
 
 type Post {
-  id: String!
+  id: Int!
   title: String!
   content: String!
-  likes: Int!
-  authorId: String!
+  likes: Int
 }
 
 type Query {
-  post(id: Int!): Post!
-}
-
-type Mutation {
-  createPost(createPostInput: CreatePostInput!): Post!
-  updatePost(updatePostInput: UpdatePostInput!): Post!
-  removePost(id: Int!): Post!
-}
-
-input CreatePostInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdatePostInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  posts: [Post!]!
 }

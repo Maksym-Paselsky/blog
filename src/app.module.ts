@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PostModule } from './post/post.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { PostModule } from './post/post.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -11,7 +12,17 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       driver: ApolloDriver,
       playground: true,
       autoSchemaFile: process.cwd() + '/src/schema.gql',
-      include: [PostModule],
+    }),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'rootpas22',
+      database: 'blog',
+      entities: ['dist/**/*.entity{.ts,.js}'],
+      synchronize: true,
+      autoLoadEntities: true,
     }),
     PostModule,
   ],
