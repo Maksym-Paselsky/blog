@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { PostModule } from './post/post.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthorModule } from './author/author.module';
 
 @Module({
   imports: [
@@ -21,10 +22,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: 'rootpas22',
       database: 'blog',
       entities: ['dist/**/*.entity{.ts,.js}'],
+      migrations: ['dist/migrations/*{.ts,.js}'],
       synchronize: true,
       autoLoadEntities: true,
     }),
     PostModule,
+    AuthorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
